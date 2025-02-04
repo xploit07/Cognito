@@ -1,0 +1,39 @@
+# ===========================
+# 🌟 General OS-Specific Files
+# ===========================
+.DS_Store
+Thumbs.db
+
+# ===========================
+# 🌟 Node.js Dependencies (Frontend & Backend)
+# ===========================
+node_modules/
+
+# ===========================
+# 🌟 Environment Variables (Sensitive Data)
+# ===========================
+*.env
+
+# ===========================
+# 🌟 Build / Compiled Files
+# ===========================
+dist/
+.cache/
+.vscode/
+out/
+temp/
+frontend/.vite/
+
+# ===========================
+# 🌟 Logs and Debugging Files
+# ===========================
+logs/
+debug.log
+error.log
+
+# ===========================
+# 🌟 Miscellaneous
+# ===========================
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
