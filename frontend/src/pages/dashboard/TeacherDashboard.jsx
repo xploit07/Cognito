@@ -1,9 +1,12 @@
+import EmailVerificationBanner from "../../components/dashboard/EmailBanner"
+import Navbar from "../../components/dashboard/Navbar"
 
 
 const TeacherDashboard = () => {
   return (
     <div>
-      <h1>Teacher Dashboard</h1>
+      <Navbar userRole="Faculty" />
+      <EmailVerificationBanner />
     </div>
   )
 }
