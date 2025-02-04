@@ -44,9 +44,9 @@ npm install  # Install dependencies
 MONGODB_URI = 'mongodb://localhost:27017'
 JWT_SECRET_KEY = 'secret#text'
 NODE_ENV = 'development'
-SMTP_USER = "845abf001@smtp-brevo.com"
-SMTP_PASS = "OkfpH5PTa1dvJ4YN"
-SENDER_MAIL = "help.cognito@gmail.com"
+SMTP_USER = 'your-smtp-user-login-details'
+SMTP_PASS = "your-smtp-password"
+SENDER_MAIL = "sender-email"
 ```
 
 ```sh
