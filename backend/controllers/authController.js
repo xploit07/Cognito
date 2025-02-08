@@ -1,5 +1,6 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import crypto from 'crypto';
 import userModel from '../models/userModel.js';
 import transporter from '../config/nodemailer.js';
 
@@ -31,7 +32,7 @@ export const register = async (req, res) => {
         //Saving the user
         await users.save();
         //Creating a token
-        const token = jwt.sign({email: users.email, id: users._id}, process.env.JWT_SECRET_KEY, {expiresIn: '7d'});
+        const token = jwt.sign({email: users.email, id: users._id}, process.env.JWT_SECRET_KEY, {algorithm: 'HS256', expiresIn: '7d'});
         //Sending the token in a cookie
         res.cookie('token', token, {
             httpOnly: true,
@@ -104,7 +105,7 @@ export const login = async (req, res) => {
             return res.json({success: false, message: "Invalid Password"});
         }
         //Taking id, email and role to create jwt token
-        const token = jwt.sign({email: user.email, id: user._id, role: user.role}, process.env.JWT_SECRET_KEY, {expiresIn: '7d'});
+        const token = jwt.sign({email: user.email, id: user._id, role: user.role}, process.env.JWT_SECRET_KEY, {algorithm:'HS256', expiresIn: '7d'});
         //Sending the token in a cookie
         res.cookie('token', token, {
             httpOnly: true,
@@ -159,7 +160,7 @@ export const sendVerifyOtp = async (req, res) => {
         }
         
         //Generating OTP
-        const otp = String(Math.floor(100000 + Math.random() * 900000));
+        const otp = crypto.randomInt(100000, 999999).toString();
         
         //Saving the OTP and its expiry time
         user.verifyOtp = otp;
@@ -264,7 +265,7 @@ export const sendResetOtp = async (req, res) => {
             return res.json({success: false, message: "User not found"});
         }
         //Generating OTP
-        const otp = String(Math.floor(100000 + Math.random() * 900000));
+        const otp = crypto.randomInt(100000, 999999).toString();
         
         //Saving the OTP and its expiry time
         user.resetOtp = otp;
@@ -343,3 +344,35 @@ export const resetPassword = async (req, res) => {
         return res.json({success: false, message: error.message});
     }
 }
+//OTP Verification
+// Verify reset password OTP
+export const verifyResetOtp = async (req, res) => {
+    const { email, otp } = req.body;
+    
+    if (!email || !otp) {
+        return res.json({ success: false, message: "Please provide email and OTP" });
+    }
+    
+    try {
+        const user = await userModel.findOne({ email });
+        
+        if (!user) {
+            return res.json({ success: false, message: "User not found" });
+        }
+        
+        // Check if OTP is valid
+        if (user.resetOtp === '' || user.resetOtp !== otp) {
+            return res.json({ success: false, message: "Invalid OTP" });
+        }
+        
+        // Check if OTP is expired
+        if (user.resetOtpExpireAt < Date.now()) {
+            return res.json({ success: false, message: "OTP has expired" });
+        }
+        
+        return res.json({ success: true, message: "OTP verified successfully" });
+        
+    } catch (error) {
+        return res.json({ success: false, message: error.message });
+    }
+};

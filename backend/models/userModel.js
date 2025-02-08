@@ -8,10 +8,10 @@ const userSchema = new mongoose.Schema({
     password: { type: String, required: true },
     role: { type: String, required: true, enum: ['Student', 'Faculty', 'Admin']},
     verifyOtp: { type: String, default: '' },
-    verifyOtpExpireAt: { type: String, default: 0 },
+    verifyOtpExpireAt: { type: Date, default: 0 },
     isAccountVerified: { type: Boolean, default: false },
     resetOtp: { type: String, default: '' },
-    resetOtpExpireAt: { type: String, default: 0 },
+    resetOtpExpireAt: { type: Date, default: 0 },
 });
 
 //Creating model for storing user details

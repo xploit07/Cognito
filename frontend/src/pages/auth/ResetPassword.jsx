@@ -133,14 +133,28 @@ const ResetPassword = () => {
     try {
       setIsOtpSubmitting(true);
       const otpArray = inputRefs.current.map((e) => e.value);
-      setOtp(otpArray.join(""));
-      setIsOtpSubmitted(true);
+      const otpValue = otpArray.join("");
+      
+      // First verify the OTP with the backend
+      const { data } = await axios.post(
+        backendUrl + "/api/auth/verify-reset-otp",
+        { email, otp: otpValue }
+      );
+      
+      if (data.success) {
+        setOtp(otpValue);
+        setIsOtpSubmitted(true);
+        toast.success("OTP verified successfully");
+      } else {
+        toast.error(data.message);
+      }
     } catch (error) {
-      toast.error(error.message);
+      toast.error(error.response?.data?.message || error.message);
     } finally {
       setIsOtpSubmitting(false);
     }
   };
+  
   const onSubmitNewPassword = async (e) => {
     e.preventDefault();
     if (isPasswordSubmitting) return;
@@ -148,23 +162,23 @@ const ResetPassword = () => {
     try {
       setIsPasswordSubmitting(true);
       const { data } = await axios.post(
-        backendUrl + "/api/auth/verify-password",
+        backendUrl + "/api/auth/reset-password", // Updated endpoint name to match backend
         { email, otp, newPassword }
       );
+      
       if (data.success) {
         toast.success(data.message);
-        // Changed to redirect to login state
         navigate("/login?state=login");
       } else {
         toast.error(data.message);
       }
     } catch (error) {
-      toast.error(error.message);
+      toast.error(error.response?.data?.message || error.message);
     } finally {
       setIsPasswordSubmitting(false);
     }
   };
-
+  
   const buttonClasses = `w-full flex items-center justify-center bg-yellow-300 text-black size-12 font-medium py-3 px-4 border-2 text-lg border-black rounded-[32px] 
   hover:bg-yellow-400 transition-colors cursor-pointer 
   disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-yellow-300`;
