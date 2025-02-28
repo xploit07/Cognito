@@ -47,7 +47,7 @@ const EmailVerify = () => {
 
   const handlePaste = (e) => {
     e.preventDefault();
-    const paste = e.clipboardData.getData("text");
+    const paste = e.clipboardData.getData("text").slice(0, 6);
     const pasteArray = paste.slice(0, 6).split("");
     const newOtpValues = [...otpValues];
 
