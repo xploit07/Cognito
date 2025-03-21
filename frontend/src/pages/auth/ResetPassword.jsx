@@ -51,7 +51,7 @@ const ResetPassword = () => {
   };
 
   const handlePaste = (e) => {
-    const paste = e.clipboardData.getData("text");
+    const paste = e.clipboardData.getData("text").slice(0, 6);
     const pasteArray = paste.split("");
     pasteArray.forEach((char, index) => {
       if (inputRefs.current[index]) {

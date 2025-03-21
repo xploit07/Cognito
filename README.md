@@ -85,28 +85,109 @@ Frontend will start on `http://localhost:5173`
 
 ## 📂 Project Structure
 ```
-lms-app/
-├── backend/
-│   ├── config/          # Database & Email Configurations
-│   ├── controllers/     # API Controllers
-│   ├── middleware/      # Authentication Middleware
-│   ├── models/         # Database Models
-│   ├── routes/         # API Routes
-│   ├── server.js       # Backend Entry Point
-│   ├── .env            # Environment Variables (Ignored)
-│   ├── package.json    # Backend Dependencies
-│
-├── frontend/
-│   ├── public/         # Static Files
-│   ├── src/           # React Components & Pages
-│   ├── .env           # Environment Variables (Ignored)
-│   ├── package.json   # Frontend Dependencies
-│   ├── vite.config.js # Vite Configuration
-│
-├── .gitignore         # Excludes node_modules, .env, and build files
-├── README.md          # Project Documentation
-```
+lms-app
+├─ backend
+│  ├─ config
+│  │  ├─ mongodb.js
+│  │  └─ nodemailer.js
+│  ├─ controllers
+│  │  ├─ analyticsController.js
+│  │  ├─ authController.js
+│  │  ├─ examController.js
+│  │  ├─ examLogController.js
+│  │  ├─ exportController.js
+│  │  ├─ questionController.js
+│  │  ├─ responseController.js
+│  │  ├─ resultController.js
+│  │  └─ userController.js
+│  ├─ middleware
+│  │  ├─ examMiddleware.js
+│  │  ├─ loggingMiddleware.js
+│  │  ├─ questionValidation.js
+│  │  ├─ roleMiddleware.js
+│  │  ├─ timeoutMiddleware.js
+│  │  └─ userAuth.js
+│  ├─ models
+│  │  ├─ accomodationModel.js
+│  │  ├─ analyticsModel.js
+│  │  ├─ examAttemptModel.js
+│  │  ├─ examLogModel.js
+│  │  ├─ examModel.js
+│  │  ├─ exportProfile.js
+│  │  ├─ notificationModel.js
+│  │  ├─ questionModel.js
+│  │  ├─ responseModel.js
+│  │  ├─ resultModel.js
+│  │  ├─ sectionModel.js
+│  │  └─ userModel.js
+│  ├─ package-lock.json
+│  ├─ package.json
+│  ├─ routes
+│  │  ├─ analyticsRoutes.js
+│  │  ├─ authRoutes.js
+│  │  ├─ examLogRoutes.js
+│  │  ├─ examRoutes.js
+│  │  ├─ questionRoutes.js
+│  │  ├─ responseRoutes.js
+│  │  ├─ resultRoutes.js
+│  │  └─ userRoutes.js
+│  └─ server.js
+├─ frontend
+│  ├─ eslint.config.js
+│  ├─ index.html
+│  ├─ package-lock.json
+│  ├─ package.json
+│  ├─ public
+│  │  └─ vite.svg
+│  ├─ src
+│  │  ├─ App.jsx
+│  │  ├─ assets
+│  │  │  ├─ chalkboard-user-solid.svg
+│  │  │  ├─ google.png
+│  │  │  ├─ hero-pg-photo.png
+│  │  │  ├─ logo.svg
+│  │  │  └─ teacher.png
+│  │  ├─ components
+│  │  │  ├─ auth
+│  │  │  ├─ auth-backup
+│  │  │  │  ├─ AuthTabs.jsx
+│  │  │  │  ├─ LoginForm.jsx
+│  │  │  │  └─ SignUpForm.jsx
+│  │  │  ├─ dashboard
+│  │  │  │  ├─ EmailBanner.jsx
+│  │  │  │  └─ Navbar.jsx
+│  │  │  ├─ Features.tsx
+│  │  │  ├─ Footer.tsx
+│  │  │  ├─ Hero.tsx
+│  │  │  ├─ icons
+│  │  │  │  └─ GoogleIcon.jsx
+│  │  │  ├─ Navbar.tsx
+│  │  │  ├─ TestimonialCard.tsx
+│  │  │  └─ Testimonials.tsx
+│  │  ├─ contexts
+│  │  │  ├─ AppContext.js
+│  │  │  └─ AppContext.jsx
+│  │  ├─ index.css
+│  │  ├─ lib
+│  │  │  └─ utils.js
+│  │  ├─ main.jsx
+│  │  └─ pages
+│  │     ├─ auth
+│  │     │  ├─ EmailVerify.jsx
+│  │     │  ├─ Login.jsx
+│  │     │  └─ ResetPassword.jsx
+│  │     ├─ dashboard
+│  │     │  ├─ AdminDashboard.jsx
+│  │     │  ├─ StudentDashboard.jsx
+│  │     │  └─ TeacherDashboard.jsx
+│  │     └─ landing
+│  │        ├─ About.jsx
+│  │        ├─ ContactUs.jsx
+│  │        └─ LandingPage.jsx
+│  └─ vite.config.js
+└─ README.md
 
+```
 ---
 
 ## 📖 Usage
@@ -154,4 +235,3 @@ Want to contribute? Feel free to fork the repo, create a feature branch, and sub
 For any queries or suggestions, feel free to reach out!
 - **Email**: help.cognito@gmail.com
 - **GitHub**: [Pratimsarkar02](https://github.com/Pratimsarkar02)
-
