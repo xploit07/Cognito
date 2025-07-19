@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # COGNITO LMS
 
 COGNITO is a **Student Learning Management System (LMS)** built using the **MERN stack** (MongoDB, Express.js, React, and Node.js). It provides role-based access for students, faculty, and admins, facilitating authentication, course management, and exam administration.
@@ -29,8 +30,7 @@ COGNITO is a **Student Learning Management System (LMS)** built using the **MERN
 ### **1️⃣ Clone the Repository**
 ```sh
 # Clone the repo
-git clone https://github.com/Pratimsarkar02/cognito-lms-tool.git
-cd lms-app
+git clone https://github.com/xploit07/Cognito.git
 ```
 
 ### **2️⃣ Setup the Backend**
@@ -235,3 +235,6 @@ Want to contribute? Feel free to fork the repo, create a feature branch, and sub
 For any queries or suggestions, feel free to reach out!
 - **Email**: help.cognito@gmail.com
 - **GitHub**: [Pratimsarkar02](https://github.com/Pratimsarkar02)
+=======
+# Cognito
+>>>>>>> b53d4e1eadfda13d5965ab67c4720bd8d397af2c
